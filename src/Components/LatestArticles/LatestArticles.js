@@ -3,9 +3,11 @@ import './LatestArticles.css'
 import Image from '../../image.png'
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
-import { Minimize } from '@material-ui/icons';
+import {connect} from 'react-redux'
+import * as actionTypes from '../../store/actions/actions'
+import {withRouter} from 'react-router-dom'
 
-export default function LatestArticles(props){
+function LatestArticles(props){
     const [likedHeart,setLikedHeart]=useState(Array(20).fill(false))
     let receivedData=[]
     
@@ -23,7 +25,12 @@ export default function LatestArticles(props){
         arr[index]=!arr[index]
         setLikedHeart(arr)
     }
-    let articles=data.map((article,index)=>{
+    function readMoreClicked(index){
+        let pos=start+index
+        props.setArticleData(receivedData[pos])
+        props.history.push('/viewarticle')
+    }
+    let articles=props.data.map((article,index)=>{
         return(
             <div className="la-article-container" key={index}>
                 <div className="la-article-image-div"><img src={Image} alt="article" className="la-article-image"/></div>
@@ -34,7 +41,7 @@ export default function LatestArticles(props){
                 <div className="la-article-content">{article["description"].substr(0,520)}{article["description"].length>520?"....":""}</div>
                 </div>
                 <div className="la-article-readmore-div">
-                    <p className="la-article-readmore">Read More</p>
+                    <p className="la-article-readmore" onClick={(e)=>props.viewArticle(index,"la")}>Read More</p>
                     {!likedHeart[index]?<FavoriteBorderIcon onClick={()=>toggleHeart(index)} htmlColor="red" style={{width:'15px',marginLeft: '8px'}} className="la-like-icon"/>:
                         <FavoriteIcon onClick={()=>toggleHeart(index)} htmlColor="red" style={{width:'15px',marginLeft: '8px'}} className="la-like-icon"/>
                     }
@@ -49,3 +56,9 @@ export default function LatestArticles(props){
         </div>
     )
 }
+const mapDispatchToProps = dispatch =>{
+    return{
+        setArticleData: (data)=> dispatch({type: actionTypes.SET_ARTICLE_DATA,articleData:data})
+    }
+}
+export default connect(null,mapDispatchToProps)(withRouter(LatestArticles))

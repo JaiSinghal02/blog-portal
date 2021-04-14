@@ -49,3 +49,12 @@
 .la-like-icon:hover{
     cursor: pointer;
 }
+@media only screen and (max-width: 500px){
+    .la-article-container{
+        width: 100%;
+        font-size: 14px;
+    }
+    .la-article-content{
+        font-size: 10px;
+    }
+}

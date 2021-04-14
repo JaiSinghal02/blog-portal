@@ -1,0 +1,44 @@
+.ya-container{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.ya-body{
+    width: 70%;
+    min-width: 320px;
+    display: flex;
+    flex-direction: column;
+    justify-self: center;
+    align-items: center;
+}
+.ya-head{
+    width:90%;
+    min-width: 310px;
+    height:60px;
+    display: flex;
+}
+.ya-head-body{
+    width: 94%;
+    height: 100%;
+    box-sizing: border-box;
+}
+.ya-head-tag{
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+.ya-head-tag h4{
+    margin: 0;
+}
+.ya-article-container{
+    width: 90%;
+    min-width: 310px;
+    min-height: 400px;
+}
+.ya-footer{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

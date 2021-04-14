@@ -15,7 +15,7 @@ export default function ActiveLastBreadcrumb(props) {
     props.stepperClick(i)
   }
   let len=props.length;
-const num=Math.round(Math.ceil(len/10));
+const num=Math.round(Math.ceil(len/props.divider));
 let steppers=[]
 for(let i=0;i<num;++i){
   steppers.push(<Step key={i} className="stepper-step" onClick={()=>handleClick(i)}>

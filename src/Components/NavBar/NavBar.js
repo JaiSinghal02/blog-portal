@@ -17,10 +17,10 @@ export default function NavBar(props){
                 </div>
                 <div className="navbar-buttons-div">
                         
-                    <Link to="/">
+                    <Link to="/writearticle">
                     <Button variant="outlined" classes={{label: "navbar-button-label"}} style={{marginRight: '8px',padding: '4px 5px'}} >Write</Button>
                     </Link>
-                    <Link to="/">
+                    <Link to="/yourarticles">
                     <Button variant="outlined" classes={{label: "navbar-button-label"}} style={{marginRight: '8px',padding: '4px 5px'}} >Your Article</Button>
                     </Link>
                     <Link to="/">

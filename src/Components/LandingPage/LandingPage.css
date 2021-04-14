@@ -43,3 +43,13 @@
     justify-content: center;
     align-items: center;
 }
+
+@media only screen and (max-width: 500px){
+    .landing-page-ta-container{
+        align-items: center;
+        width: 40%;
+    }
+    .landing-page-ta-article-container{
+        width:95%;
+    }
+}

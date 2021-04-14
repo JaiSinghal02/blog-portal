@@ -6,21 +6,18 @@ import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 
 export default function TopArticle(props){
     const [likedHeart,setLikedHeart]=useState(Array(20).fill(false))
-    let data=[]
-    for(let i=0;i<5;i++){
-        data.push({'user': `user-${i+1}`,'title': `title-${i+1}`})
-    }
     const toggleHeart=(index)=>{
         let arr=[...likedHeart]
         arr[index]=!arr[index]
         setLikedHeart(arr)
     }
-    let articles=data.map((article,index)=>{
+    let articles=props.data.map((article,index)=>{
+        if(index<5){
         return(
             <div className="ta-article-container" key={index}>
                 
                 <div className="ta-article-cont">
-                    <div className="ta-article-body">
+                    <div className="ta-article-body" onClick={(e)=>{props.viewArticle(index,"ta")}}>
                     <div className="ta-article-user">{article["user"]}</div>
                     <div className="ta-article-title">{article["title"]}</div>
                 <div className="ta-article-readmore-div">
@@ -41,7 +38,10 @@ export default function TopArticle(props){
                     <img src={Image} alt="article" className="ta-article-image"/>
                     </div>
             </div>
-        )
+        )}
+        else{
+            return null
+        }
     })
     return(
         <div className="ta-container">
