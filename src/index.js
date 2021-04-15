@@ -15,7 +15,7 @@ axios.defaults.headers.common['x-auth-token'] = token;
 const store=createStore(reducer)
 ReactDOM.render(
   <Provider store={store}>
-  <BrowserRouter>
+  <BrowserRouter basename="/blog-portal-frontend/">
     <App />
   </BrowserRouter>
   </Provider>,
