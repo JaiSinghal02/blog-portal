@@ -29,6 +29,9 @@ function ViewArticle(props){
           });
       }, [])
     let img=Image
+    if(article["articleImage"]){
+        img=`https://fatmug-blog-server.herokuapp.com/${article["articleImage"].replace("\\","/")}`
+    }
     return(
         <>
         {article?

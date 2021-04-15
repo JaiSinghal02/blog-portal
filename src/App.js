@@ -59,7 +59,7 @@ function App(props) {
     <Route path="/yourarticles" component={YourArticles} />
     <Route path="/writearticle" component={WriteArticle} />
     <Route path="/landingpage" component={LandingPage} />
-    <Redirect to="/landingpage"/>
+    <Redirect to="/"/>
   </Switch>
   }
   return (

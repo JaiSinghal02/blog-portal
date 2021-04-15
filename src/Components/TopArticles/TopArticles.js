@@ -28,7 +28,7 @@ export default function TopArticle(props){
         if(index<5){
             let img=Image
         if(article["articleImage"]){
-            img=`http://localhost:5000/${article["articleImage"].replace("\\","/")}`
+            img=`https://fatmug-blog-server.herokuapp.com/${article["articleImage"].replace("\\","/")}`
         }
         return(
             <div className="ta-article-container" key={index}>

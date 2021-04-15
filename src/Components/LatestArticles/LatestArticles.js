@@ -31,7 +31,7 @@ function LatestArticles(props){
     let articles=props.data.map((article,index)=>{
         let img=Image
         if(article["articleImage"]){
-            img=`http://localhost:5000/${article["articleImage"].replace("\\","/")}`
+            img=`https://fatmug-blog-server.herokuapp.com/${article["articleImage"].replace("\\","/")}`
         }
         return(
             <div className="la-article-container" key={index}>

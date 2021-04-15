@@ -10,7 +10,7 @@ export default function YourArticle(props) {
     let articleContent=props.data.map((article,index)=>{
         let img=Image
         if(article["articleImage"]){
-            img=`http://localhost:5000/${article["articleImage"].replace("\\","/")}`
+            img=`https://fatmug-blog-server.herokuapp.com/${article["articleImage"].replace("\\","/")}`
         }
         return(
             <div key={index} className="ya-article-content" >
