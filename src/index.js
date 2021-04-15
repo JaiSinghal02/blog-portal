@@ -8,6 +8,7 @@ import {createStore} from 'redux'
 import reducer from './store/reducer/reducer'
 import axios from 'axios'
 
+
 const token=localStorage.getItem('token')
 axios.defaults.baseURL = 'https://fatmug-blog-server.herokuapp.com/'
 axios.defaults.headers.common['x-auth-token'] = token;
