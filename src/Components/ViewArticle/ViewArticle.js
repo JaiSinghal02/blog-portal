@@ -10,6 +10,7 @@ import axios from 'axios';
 
 function ViewArticle(props){
     const [article,setArticle]= useState(null)
+    const [img,setImg]= useState(Image)
     useEffect(() => {
         const articleId= localStorage.getItem("articleId")
         if(!articleId){
@@ -17,7 +18,13 @@ function ViewArticle(props){
         }
         axios.get(`/api/article/id/${articleId}`)
         .then(res=>{
+            let image=Image
+            if(res.data["articleImage"]){
+                image=`https://fatmug-blog-server.herokuapp.com/${res.data["articleImage"].replace("\\","/")}`
+            }
             setArticle(res.data)
+            setImg(image)
+            
         })
         .catch(err=>{
             console.log(err)
@@ -28,10 +35,7 @@ function ViewArticle(props){
             behavior: 'smooth'
           });
       }, [])
-    let img=Image
-    if(article["articleImage"]){
-        img=`https://fatmug-blog-server.herokuapp.com/${article["articleImage"].replace("\\","/")}`
-    }
+    
     return(
         <>
         {article?
