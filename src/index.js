@@ -11,7 +11,7 @@ import axios from 'axios'
 
 const token=localStorage.getItem('token')
 axios.defaults.baseURL = 'https://fatmug-blog-server.herokuapp.com/'
-axios.defaults.headers.common['x-auth-token'] = token;
+
 const store=createStore(reducer)
 ReactDOM.render(
   <Provider store={store}>

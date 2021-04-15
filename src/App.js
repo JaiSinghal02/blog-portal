@@ -15,6 +15,7 @@ import axios from 'axios';
 function App(props) {
   const [popup, changePopUp] = useState({ message: "", severity: "" })
   const token= localStorage.getItem("token")
+  axios.defaults.headers.common['x-auth-token'] = token;
   function publishArticle(){
     const data=props.publishData
     let form = new FormData()
