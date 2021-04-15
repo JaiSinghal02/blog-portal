@@ -29,10 +29,11 @@
 .la-article-info{
     width: 90%;
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
 }
 .la-article-body{
-    width: 85%;
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -57,11 +58,11 @@
     width: 92%;
 }
 .la-article-readmore-div{
-    width: 70%;
+    width: 100%;
     display: flex;
     align-items: flex-end;
     justify-content: flex-end;
-    font-size: 10px;
+    font-size: 11px;
 }
 .la-article-readmore{
    margin-bottom: 8px;
