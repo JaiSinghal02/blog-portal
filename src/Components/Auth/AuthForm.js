@@ -59,17 +59,17 @@ function AuthForm(props) {
     return check
   }
   const afterAuth = (user, mode = "Signup") => {
+    console.log("user -->",user)
     localStorage.setItem('token', user["token"])
     localStorage.setItem('first_name', user["first_name"])
     localStorage.setItem('last_name', user["last_name"])
     localStorage.setItem('email', user["email"])
     changePopUp(prev => ({ ...prev, message: "Authentication Successful", severity: "success" }))
-    let redirect = '/account/timer'
-    localStorage.clear()
+    let redirect = '/landingpage'
     localStorage.setItem('token',user["token"])
     setTimeout(() => {
       props.history.push(redirect)
-    }, 2000)
+    }, 1200)
   }
   const validateForm = (mode, user, p1, p2 = "") => {
     let check = false;
@@ -84,6 +84,7 @@ function AuthForm(props) {
       changeSignUpError(arr);
     }
     else {
+      console.log("validating sign in")
       let arr = Array(2).fill(false)
       if (!validateEmail(user["email"])) { arr[0] = true }
       if (p1.trim().length < 5) { arr[1] = true }
@@ -105,17 +106,21 @@ function AuthForm(props) {
       changeAuthErr("Some Error Occured");
     }
   }
+  const formatName = (name)=>{
+    name=name.trim()
+    return name[0].toUpperCase() + name.substr(1)
+  }
   const submitAuthForm = (e) => {
     e.preventDefault()
     if (formobj["title"] === "Sign up") {
-      const first_name = e.target[0].value
-      const last_name = e.target[2].value
+      const first_name = formatName(e.target[0].value)
+      const last_name = formatName(e.target[2].value)
       const email = e.target[4].value
       const password1 = e.target[6].value
       const password2 = e.target[8].value
       const user = { password: password1, email: email, first_name: first_name, last_name: last_name };
       if(!validateForm("Signup", user, password1, password2)) {
-        axios.post("/api/user/signup", user)
+        axios.post("/api/signup", user)
           .then(res => { afterAuth(res.data) })
           .catch(err => { catchError(err)})
       }
@@ -126,7 +131,7 @@ function AuthForm(props) {
       const password = e.target[2].value
       const user = { email: email, password: password };
       if(!validateForm("Signin", user, password)) {
-        axios.post("/api/user/signin", user)
+        axios.post("/api/signin", user)
           .then(res => { afterAuth(res.data, "Signin");})
           .catch(err => {
             catchError(err)

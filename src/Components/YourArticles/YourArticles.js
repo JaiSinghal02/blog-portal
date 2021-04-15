@@ -2,12 +2,12 @@ import React,{useState,useEffect} from 'react'
 import './YourArticles.css'
 import YourArticle from './YourArticle/YourArticle'
 import Stepper from '../UI/Stepper/Stepper'
-import {connect} from 'react-redux'
-import * as actionTypes from '../../store/actions/actions'
+import axios from 'axios'
 
 
 function YourArticles(props) {
     const [stepValue,setStepValue]=useState(0)
+    const [userArticle,setUserArticle]=useState([])
     function stepperClick(i){
         setStepValue(i)
     }
@@ -19,6 +19,15 @@ function YourArticles(props) {
             behavior: 'smooth'
           });
       }, [stepValue])
+      useEffect(()=>{
+        axios.get('/api/article/user')
+        .then(res=>{
+            setUserArticle(res.data)
+        })
+        .catch(err=>{
+            console.log(err)
+        })
+      },[])
       let receivedData=[]
       for(let i=0;i<15;i++){
           receivedData.push({'user': `user-${i+1}`,'title': `title-${i+1}`,'description': `Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.`})
@@ -31,7 +40,7 @@ function YourArticles(props) {
       }
       function articleClicked(i){
           let pos=stepValue*5+i
-        props.setArticleData(receivedData[pos])
+          localStorage.setItem("articleId",userArticle[pos]["_id"])
         props.history.push('/viewarticle')
     }
     return (
@@ -50,22 +59,17 @@ function YourArticles(props) {
 
                 <div className="ya-article-container">
                     <div className="ya-article-body">
-                        <YourArticle data={data}articleNumber={stepValue} articleClicked={(i)=>articleClicked(i)}/>
+                        <YourArticle data={userArticle}articleNumber={stepValue} articleClicked={(i)=>articleClicked(i)}/>
                     </div>
                 </div>
             </div>
         </div>
         <div className="ya-footer">
-
-        <Stepper length={15} divider={5} stepperClick={stepperClick}/>
+        {userArticle.length>5?
+        <Stepper length={userArticle.length} divider={5} stepperClick={stepperClick}/>:null
+        }
         </div>
         </>
     )
 }
-const mapDispatchToProps = (dispatch)=>{
-    return{
-        setArticleData: (data)=> dispatch({type: actionTypes.SET_ARTICLE_DATA, articleData: data})
-    }
-}
-
-export default connect(null,mapDispatchToProps)(YourArticles)
+export default YourArticles

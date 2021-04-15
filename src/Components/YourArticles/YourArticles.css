@@ -10,6 +10,7 @@
     flex-direction: column;
     justify-self: center;
     align-items: center;
+    background: rgb(255 255 255 / 89%);
 }
 .ya-head{
     width:90%;
@@ -41,4 +42,22 @@
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+@media only screen and (max-width: 800px){
+    .ya-body{
+        width: 600px;
+        max-width: 90%;
+        min-width: 0;
+    }
+}
+@media only screen and (max-width: 310px){
+    .ya-head{
+        min-width: 0;
+    }
+    .ya-article-container{
+        width: 100%;
+        min-width: 0;
+        font-size: 11px;
+    }
 }

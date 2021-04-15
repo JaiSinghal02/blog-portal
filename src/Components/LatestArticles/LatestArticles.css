@@ -1,6 +1,9 @@
 .la-container{
     display: flex;
     flex-direction: column;
+    background: url('../../white.png');
+    background-size: contain;
+    background-position: left center;
 }
 .la-article-container{
     min-height: 400px;
@@ -12,11 +15,21 @@
 }
 .la-article-image-div{
     width: 85%;
-    max-height: 260px;
+    max-height: 280px;
 }
 .la-article-image{
     width: 90%;
     height: 100%;
+}
+.la-article-info-div{
+    width:85%;
+    display: flex;
+    
+}
+.la-article-info{
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
 }
 .la-article-body{
     width: 85%;
@@ -25,12 +38,19 @@
     align-items: flex-start;
     justify-content: flex-start;
 }
+.la-article-user-body{
+    width: 70%;
+    margin-top: 10px;
+    display: flex;
+}
 .la-article-user{
     margin-top: 6px;
     margin-bottom: 3px;
+    font-size: 12px;
 }
 .la-article-title{
     margin-bottom: 8px;
+    font-weight: bold;
 }
 .la-article-content{
     font-size: 13px;
@@ -39,9 +59,12 @@
 .la-article-readmore-div{
     width: 70%;
     display: flex;
-    align-items: center;
+    align-items: flex-end;
     justify-content: flex-end;
     font-size: 10px;
+}
+.la-article-readmore{
+   margin-bottom: 8px;
 }
 .la-article-readmore:hover{
     cursor: pointer;
@@ -49,10 +72,16 @@
 .la-like-icon:hover{
     cursor: pointer;
 }
+@media only screen and (max-width: 700px){
+    .la-article-container{
+        min-height: 300px;
+    }
+}
 @media only screen and (max-width: 500px){
     .la-article-container{
         width: 100%;
         font-size: 14px;
+        min-height: 230px;
     }
     .la-article-content{
         font-size: 10px;

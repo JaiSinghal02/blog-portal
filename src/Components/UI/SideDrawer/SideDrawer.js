@@ -13,6 +13,7 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import CreateOutlinedIcon from '@material-ui/icons/CreateOutlined';
 import DescriptionOutlinedIcon from '@material-ui/icons/DescriptionOutlined';
+import HomeOutlinedIcon from '@material-ui/icons/HomeOutlined';
 import ExitToAppOutlinedIcon from '@material-ui/icons/ExitToAppOutlined';
 import {Link} from 'react-router-dom'
 
@@ -70,10 +71,13 @@ export default function PersistentDrawerRight(props) {
     setOpen(true);
   };
 
-  const handleDrawerClose = () => {
+  const handleDrawerClose = (i) => {
     setOpen(false);
+    if(i===(props.list.length-1)){
+      localStorage.clear()
+    }
   };
-  let icons=[<CreateOutlinedIcon />,<DescriptionOutlinedIcon/>,<ExitToAppOutlinedIcon/>]
+  let icons=[<CreateOutlinedIcon />,<DescriptionOutlinedIcon/>,<HomeOutlinedIcon/>,<ExitToAppOutlinedIcon/>]
   return (
     <div className={classes.root}>
       <IconButton
@@ -103,8 +107,8 @@ export default function PersistentDrawerRight(props) {
         <List>
           {props.list.map((obj, index) => (
             <Link key={obj["name"]} to={obj["path"]} style={{textDecoration: 'none'}}>
-            <ListItem button  onClick={handleDrawerClose}>
-              <ListItemIcon>{icons[index]}</ListItemIcon>
+            <ListItem button  onClick={(e)=>handleDrawerClose(index)}>
+              <ListItemIcon>{props.list.length===4?icons[index]:icons[index+1]}</ListItemIcon>
               <ListItemText primary={obj["name"]} />
             </ListItem>
             </Link>

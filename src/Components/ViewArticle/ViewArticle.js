@@ -1,33 +1,52 @@
-import React,{useEffect} from 'react'
+import React,{useState,useEffect} from 'react'
 import './ViewArticle.css'
 import Image from '../../image.png'
 import AccountCircleOutlinedIcon from '@material-ui/icons/AccountCircleOutlined';
+import dateConverter from '../../functions/dateConverter'
 import {connect} from 'react-redux'
+import {withRouter} from 'react-router-dom'
+import axios from 'axios';
 
 
 function ViewArticle(props){
+    const [article,setArticle]= useState(null)
     useEffect(() => {
+        const articleId= localStorage.getItem("articleId")
+        if(!articleId){
+            props.history.goBack()
+        }
+        axios.get(`/api/article/id/${articleId}`)
+        .then(res=>{
+            setArticle(res.data)
+        })
+        .catch(err=>{
+            console.log(err)
+        })
         window.scrollTo({
             top: 0,
             left: 0,
             behavior: 'smooth'
           });
       }, [])
+    let img=Image
+    console.log(article?"ok":"false")
     return(
+        <>
+        {article?
         <div className="va-container">
             <div className="va-body">
                 <div className="va-article-image-container">
                         <div className="va-article-image-body">
-                                <img src={Image} alt="article" className="va-article-image"/>
+                                <img src={img} alt="article" className="va-article-image"/>
                         </div>
                 </div>
                 <div className="va-article-head-container">
                         <div className="va-article-head-body">
                                 <div className="va-article-head-title">
-                                    <h3>{props.articleData["title"]}</h3>
+                                    <h3>{article["title"]}</h3>
                                 </div>
                                 <div className="va-article-head-date">
-                                    <h5>Apr 16</h5>
+                                    <h5>{dateConverter(article["date"])}</h5>
                                 </div>
                         </div>
                         <div className="va-article-head-hr">
@@ -37,14 +56,14 @@ function ViewArticle(props){
                 <div className="va-article-content-container">
                     <div className="va-article-content-body">
                         <div className="va-article-content">
-                                <p>{props.articleData["description"]}</p>
+                                <p>{article["description"]}</p>
                         </div>       
                     </div>       
                 </div>
                 <div className="va-article-footer">
                     <div className="va-article-footer-body">
                         <AccountCircleOutlinedIcon/>
-                              <p>{props.articleData["user"]}</p>  
+                              <p><span style={{fontStyle: 'italic'}}>by </span><span style={{fontWeight: '600'}}>{article["user"]["name"]}</span></p>  
                     </div>  
                 </div>  
                 <div className="va-empty-space">
@@ -53,7 +72,8 @@ function ViewArticle(props){
             </div>
             
 
-        </div>
+        </div>:null}
+        </>
     )
 }
 const mapStateToProps = state=>{
@@ -61,4 +81,4 @@ const mapStateToProps = state=>{
         articleData: state.articleData
     }
 }
-export default connect(mapStateToProps)(ViewArticle)
+export default connect(mapStateToProps)(withRouter(ViewArticle))

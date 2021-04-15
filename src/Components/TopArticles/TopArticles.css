@@ -1,8 +1,7 @@
 .ta-container{
     display: flex;
     flex-direction: column;
-    width: 50%;
-    margin-right: 5%;
+    width: 75%;
 }
 .ta-article-container{
     width: 95%;
@@ -23,11 +22,22 @@
     justify-content: flex-start;
     align-items: flex-start;
 }
-.ta-article-body:hover{
-    cursor: pointer;
+.ta-article-user-body{
+    width: 75%;
+    display: flex;
 }
 .ta-article-user{
-    margin-bottom: 5px;
+    display: flex;
+    align-items: center;
+    font-size: 12px;
+    font-weight: 500;
+}
+.ta-article-title{
+    font-weight: bold;
+    font-size: 17px;
+}
+.ta-article-title:hover,.ta-article-user:hover,.ta-like-icon:hover{
+    cursor: pointer;
 }
 .ta-article-readmore-div{
     width:100px;
@@ -65,5 +75,6 @@
     }
     .ta-article-cont{
         padding-left: 15px;
+        width: 85%;
     }   
 }

@@ -19,12 +19,13 @@
     flex-direction: column;
     height:90px;
     align-items: center;
+    background: #ffffffeb;
 }
 .landingpage-ta-line{
-    width:60%
+    width:75%
 }
 .landingpage-ta-head{
-    width:60%;
+    width:75%;
     height:34px;
     display: flex;
     align-items: center;
@@ -33,6 +34,9 @@
 .landing-page-ta-article-container{
     display: flex;
     justify-content: center;
+    background: url('../../white.png');
+    background-size: contain;
+    background-position: left center;
 }
 
 .landing-page-footer{

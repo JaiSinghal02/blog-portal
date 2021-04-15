@@ -4,11 +4,13 @@
     display: flex;
     justify-content: space-between;
     padding-left: 20px;
+    background-color: #ffffffeb;
 }
 .navbar-info{
     display: flex;
     justify-content: center;
     align-items: center;
+    
 }
 .navbar-buttons-container{
     width: 50%;
@@ -39,8 +41,18 @@
 .navbar-secondary-publish-button{
     display: none;
 }
-
+@media only screen and (max-width: 800px){
+    .navbar-info h2{
+        font-size: 19px;
+    }
+    .navbar-buttons-container{
+        width: 60%;
+    }
+}
 @media only screen and (max-width: 660px){
+    .navbar-container{
+        width: 93%;
+    }
     .navbar-buttons-container{
         width: 15%;
     }

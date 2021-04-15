@@ -1,21 +1,14 @@
 import * as actionTypes from '../actions/actions'
 
 const intialState={
-    articleData: {},
     publishData: {
         title: "",
         description: "",
-        image: ""
+        articleImage: ""
     }
 }
 const reducer=(state=intialState,action)=>{
     switch(action.type){
-        case actionTypes.SET_ARTICLE_DATA:
-            console.log("SETTING DATA-->",action.articleData)
-            return{
-                ...state,
-                articleData: action.articleData
-            }
         case actionTypes.SET_PUBLISH_DATA:
             //console.log("key-->",Object.keys(action.data))
             const key=Object.keys(action.data)
@@ -33,7 +26,7 @@ const reducer=(state=intialState,action)=>{
                 publishData: {
                     title: "",
                     description: "",
-                    image: ""
+                    articleImage: ""
                 }
             }
         default:

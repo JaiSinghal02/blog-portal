@@ -6,8 +6,11 @@ import {BrowserRouter} from 'react-router-dom'
 import {Provider} from 'react-redux'
 import {createStore} from 'redux'
 import reducer from './store/reducer/reducer'
+import axios from 'axios'
 
-
+const token=localStorage.getItem('token')
+axios.defaults.baseURL = 'http://localhost:5000/'
+axios.defaults.headers.common['x-auth-token'] = token;
 const store=createStore(reducer)
 ReactDOM.render(
   <Provider store={store}>

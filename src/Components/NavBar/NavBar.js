@@ -6,9 +6,10 @@ import SideDrawer from '../UI/SideDrawer/SideDrawer'
 import './NavBar.css'
 
 function NavBar(props){
+    const userName=localStorage.getItem("first_name")
     const path=props.history.location.pathname
     const boolWriteBar=path==="/writearticle"
-    const navlist=[{"name":"WRITE","path":"/writearticle"},{"name":"YOUR ARTICLE","path":"/yourarticles"},{"name":"LOGOUT","path":"/landingpage"}]
+    const navlist=[{"name":"WRITE","path":"/writearticle"},{"name":"YOUR ARTICLE","path":"/yourarticles"},{"name":"HOME","path":"/landingpage"},{"name":"LOGOUT","path":"/authentication"}]
     if(boolWriteBar){
         navlist.splice(0,1)
     }
@@ -24,7 +25,7 @@ function NavBar(props){
     return(
         <div className="navbar-container">
             <div className="navbar-info">
-                <h2>FATMUG | Greetings{"<name>"}</h2>
+                <h2>FATMUG | Greetings! {userName}</h2>
             </div>
             {/* secondary publish button for mobile device */}
             <div className="navbar-secondary-publish-button"> 
@@ -48,8 +49,11 @@ function NavBar(props){
                     <NavLink activeClassName="active-link" exact to="/yourarticles" style={{ textDecoration: 'none' }}>
                     <Button variant="outlined" classes={{label: "navbar-button-label"}} style={{marginRight: '8px',padding: '4px 5px'}} >Your Article</Button>
                     </NavLink>
-                    <NavLink exact to="/" style={{ textDecoration: 'none' }}>
-                    <Button classes={{label: "navbar-button-label"}} style={{padding: '4px 5px'}} >Logout</Button>
+                    <NavLink activeClassName="active-link" exact to="/landingpage" style={{ textDecoration: 'none' }}>
+                    <Button variant="outlined" classes={{label: "navbar-button-label"}} style={{marginRight: '8px',padding: '4px 5px'}} >Home</Button>
+                    </NavLink>
+                    <NavLink exact to="/authentication" style={{ textDecoration: 'none' }}>
+                    <Button onClick={()=>{localStorage.clear()}}classes={{label: "navbar-button-label"}} style={{padding: '4px 5px'}} >Logout</Button>
                     </NavLink>
                 </div>
             </div>

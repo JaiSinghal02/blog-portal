@@ -12,7 +12,7 @@ function WriteArticle(props){
     const [image, setImage]=useState("")
     function imageUpload(e){
         if(e.target.value!==""){
-            props.changePublishData({"image": e.target.value})
+            props.changePublishData({"articleImage": e.target.files[0]})
             setImage(URL.createObjectURL(e.target.files[0]))
             setImagePath(e.target.value)
         }
@@ -25,6 +25,7 @@ function WriteArticle(props){
           Title
         </InputLabel>
         <TextField
+        autoFocus
           label=""
           id="filled-size-small"
           placeholder=""
@@ -67,8 +68,11 @@ function WriteArticle(props){
                 <img src={image} alt="upload" className="wa-article-up-image"/>
             </div>:null}
         </div>
+        <div className="wa-empty-space">
 
+</div>
         </div>
+        
 
         </div>
     )
