@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/blog-portal-frontend/static/css/main.0655e4be.chunk.css",
-    "main.js": "/blog-portal-frontend/static/js/main.98f11cf5.chunk.js",
-    "main.js.map": "/blog-portal-frontend/static/js/main.98f11cf5.chunk.js.map",
+    "main.js": "/blog-portal-frontend/static/js/main.e737398e.chunk.js",
+    "main.js.map": "/blog-portal-frontend/static/js/main.e737398e.chunk.js.map",
     "runtime-main.js": "/blog-portal-frontend/static/js/runtime-main.14671756.js",
     "runtime-main.js.map": "/blog-portal-frontend/static/js/runtime-main.14671756.js.map",
     "static/js/2.c348b24c.chunk.js": "/blog-portal-frontend/static/js/2.c348b24c.chunk.js",
@@ -18,6 +18,6 @@
     "static/js/runtime-main.14671756.js",
     "static/js/2.c348b24c.chunk.js",
     "static/css/main.0655e4be.chunk.css",
-    "static/js/main.98f11cf5.chunk.js"
+    "static/js/main.e737398e.chunk.js"
   ]
 }
