@@ -33,6 +33,12 @@
 .navbar-sidedrawer{
     display: none;
 }
+.active-link>button{
+    background-color: grey;
+}
+.navbar-secondary-publish-button{
+    display: none;
+}
 
 @media only screen and (max-width: 660px){
     .navbar-buttons-container{
@@ -47,6 +53,11 @@
     }
     .navbar-info h2{
         font-size: 18px;
+    }
+    .navbar-secondary-publish-button{
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 
 }

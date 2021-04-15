@@ -3,13 +3,16 @@ import './WriteArticle.css'
 import TextField from '@material-ui/core/TextField';
 import InputLabel from '@material-ui/core/InputLabel';
 import Button from '@material-ui/core/Button';
+import {connect} from 'react-redux'
+import * as actionTypes from '../../store/actions/actions'
 import Image from '../../image.png' //Temporray image replace by user upload image
 
-export default function WriteArticle(props){
+function WriteArticle(props){
     const [imagePath, setImagePath]=useState("")
     const [image, setImage]=useState("")
     function imageUpload(e){
         if(e.target.value!==""){
+            props.changePublishData({"image": e.target.value})
             setImage(URL.createObjectURL(e.target.files[0]))
             setImagePath(e.target.value)
         }
@@ -27,6 +30,7 @@ export default function WriteArticle(props){
           placeholder=""
           variant="filled"
           fullWidth
+          onChange={(e)=>props.changePublishData({"title": e.target.value})}
         />
         </div>
         <div className="wa-article-desc-container">
@@ -42,6 +46,7 @@ export default function WriteArticle(props){
           multiline={true}
           rowsMax={15}
           rows={15}
+          onChange={(e)=>props.changePublishData({"description": e.target.value})}
         />
         </div>
         <div className="wa-article-image-container">
@@ -68,3 +73,9 @@ export default function WriteArticle(props){
         </div>
     )
 }
+const mapDispatchToProps = dispatch=>{
+    return{
+        changePublishData: (data)=> dispatch({type: actionTypes.SET_PUBLISH_DATA,data:data})
+    }
+}
+export default connect(null,mapDispatchToProps)(WriteArticle)

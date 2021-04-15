@@ -2,7 +2,6 @@ import React from 'react';
 import clsx from 'clsx';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
-import CssBaseline from '@material-ui/core/CssBaseline';
 import List from '@material-ui/core/List';
 import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
@@ -12,8 +11,10 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
+import CreateOutlinedIcon from '@material-ui/icons/CreateOutlined';
+import DescriptionOutlinedIcon from '@material-ui/icons/DescriptionOutlined';
+import ExitToAppOutlinedIcon from '@material-ui/icons/ExitToAppOutlined';
+import {Link} from 'react-router-dom'
 
 const drawerWidth = 240;
 
@@ -60,7 +61,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function PersistentDrawerRight() {
+export default function PersistentDrawerRight(props) {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
@@ -72,7 +73,7 @@ export default function PersistentDrawerRight() {
   const handleDrawerClose = () => {
     setOpen(false);
   };
-
+  let icons=[<CreateOutlinedIcon />,<DescriptionOutlinedIcon/>,<ExitToAppOutlinedIcon/>]
   return (
     <div className={classes.root}>
       <IconButton
@@ -86,7 +87,7 @@ export default function PersistentDrawerRight() {
           </IconButton>
       <Drawer
         className={(open)?classes.drawer:classes.hide}
-        variant="persistent"
+        variant="temporary"
         anchor="right"
         open={open}
         classes={{
@@ -100,22 +101,24 @@ export default function PersistentDrawerRight() {
         </div>
         <Divider />
         <List>
-          {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-              <ListItemText primary={text} />
+          {props.list.map((obj, index) => (
+            <Link key={obj["name"]} to={obj["path"]} style={{textDecoration: 'none'}}>
+            <ListItem button  onClick={handleDrawerClose}>
+              <ListItemIcon>{icons[index]}</ListItemIcon>
+              <ListItemText primary={obj["name"]} />
             </ListItem>
+            </Link>
           ))}
         </List>
         <Divider />
-        <List>
+        {/* <List>
           {['All mail', 'Trash', 'Spam'].map((text, index) => (
             <ListItem button key={text}>
               <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
               <ListItemText primary={text} />
             </ListItem>
           ))}
-        </List>
+        </List> */}
       </Drawer>
     </div>
   );

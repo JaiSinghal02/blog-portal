@@ -50,7 +50,6 @@ function YourArticles(props) {
 
                 <div className="ya-article-container">
                     <div className="ya-article-body">
-                        {console.log("-->",data)}
                         <YourArticle data={data}articleNumber={stepValue} articleClicked={(i)=>articleClicked(i)}/>
                     </div>
                 </div>
