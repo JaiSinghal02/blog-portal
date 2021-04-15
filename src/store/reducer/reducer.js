@@ -10,9 +10,7 @@ const intialState={
 const reducer=(state=intialState,action)=>{
     switch(action.type){
         case actionTypes.SET_PUBLISH_DATA:
-            //console.log("key-->",Object.keys(action.data))
             const key=Object.keys(action.data)
-            // console.log("value-->",action.data[key])
             return{
                 ...state,
                 publishData: {

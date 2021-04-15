@@ -59,7 +59,6 @@ function AuthForm(props) {
     return check
   }
   const afterAuth = (user, mode = "Signup") => {
-    console.log("user -->",user)
     localStorage.setItem('token', user["token"])
     localStorage.setItem('first_name', user["first_name"])
     localStorage.setItem('last_name', user["last_name"])
@@ -84,7 +83,6 @@ function AuthForm(props) {
       changeSignUpError(arr);
     }
     else {
-      console.log("validating sign in")
       let arr = Array(2).fill(false)
       if (!validateEmail(user["email"])) { arr[0] = true }
       if (p1.trim().length < 5) { arr[1] = true }

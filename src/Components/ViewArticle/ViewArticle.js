@@ -29,7 +29,6 @@ function ViewArticle(props){
           });
       }, [])
     let img=Image
-    console.log(article?"ok":"false")
     return(
         <>
         {article?
